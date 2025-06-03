@@ -316,7 +316,7 @@ mod tests {
 
     use bc_envelope::Attachments;
 
-    use crate::{BlockHash, BlockHeight, test_envelope_roundtrip};
+    use crate::{test_envelope_roundtrip, BlockHash, BlockHeight};
 
     use super::Account;
 

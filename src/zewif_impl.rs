@@ -3,7 +3,7 @@ use bc_components::ARID;
 use bc_envelope::prelude::*;
 use std::collections::HashMap;
 
-use crate::{BlockHeight, Indexed, envelope_indexed_objects_for_predicate};
+use crate::{envelope_indexed_objects_for_predicate, BlockHash, BlockHeight, Indexed};
 
 use super::{Transaction, TxId, ZewifWallet};
 
@@ -60,6 +60,7 @@ pub struct Zewif {
     wallets: Vec<ZewifWallet>,
     transactions: HashMap<TxId, Transaction>,
     export_height: BlockHeight,
+    export_height_block_hash: BlockHash,
     attachments: Attachments,
 }
 
