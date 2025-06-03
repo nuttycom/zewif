@@ -1,10 +1,12 @@
 use anyhow::{Context, Result};
 use bc_envelope::prelude::*;
-use std::collections::HashSet;
+use std::collections::{HashMap, HashSet};
 
 use crate::{
+    envelope_indexed_objects_for_predicate,
+    orchard::{OrchardSentOutput, OrchardWitness},
+    sapling::{SaplingSentOutput, SaplingWitness},
     Address, BlockHash, BlockHeight, Indexed, NoQuotesDebugOption, TxId,
-    envelope_indexed_objects_for_predicate, orchard::OrchardSentOutput, sapling::SaplingSentOutput,
 };
 
 /// A logical grouping of addresses and transaction history within a wallet.
@@ -85,13 +87,24 @@ pub struct Account {
     addresses: Vec<Address>,
 
     // Subset of the global transaction history that involves this account.
-    relevant_transactions: HashSet<TxId>,
+    //
+    // The keys of this map are the TxIds of transactions that are relevant to the wallet; the
+    // values are vectors of output metadata / output index pairs, where the output index is
+    // relative to the pool appropriate to the output metadata.
+    relevant_transactions: HashMap<TxId, Vec<(ReceivedOutputMeta, usize)>>,
 
     // The following are intended for storage of information that may not be
     // recoverable from the chain.
     sapling_sent_outputs: Vec<SaplingSentOutput>,
     orchard_sent_outputs: Vec<OrchardSentOutput>,
     attachments: Attachments,
+}
+
+#[derive(Clone, PartialEq, Eq)]
+pub enum ReceivedOutputMeta {
+    Transparent,
+    Sapling(Option<SaplingWitness>),
+    Orchard(Option<OrchardWitness>),
 }
 
 #[rustfmt::skip]
