@@ -84,19 +84,6 @@ impl Indexed for SaplingSentOutput {
 
 impl SaplingSentOutput {
     /// Creates a new `SaplingSentOutput` with default values.
-    ///
-    /// This constructor initializes a `SaplingSentOutput` with empty default values
-    /// for all fields. In practical use, these values would be set using the setter
-    /// methods before the object is used.
-    ///
-    /// # Returns
-    /// A new `SaplingSentOutput` instance with default values.
-    ///
-    /// # Examples
-    /// ```
-    /// # use zewif::sapling::SaplingSentOutput;
-    /// let sent_output = SaplingSentOutput::new();
-    /// ```
     pub fn new() -> Self {
         Self {
             index: 0,
@@ -164,21 +151,6 @@ impl SaplingSentOutput {
     }
 
     /// Sets the value (amount) of ZEC for this sent output.
-    ///
-    /// # Arguments
-    /// * `value` - The amount of ZEC to set
-    ///
-    /// # Examples
-    /// ```
-    /// # use zewif::{sapling::SaplingSentOutput, Amount};
-    /// # use anyhow::Result;
-    /// # fn example() -> Result<()> {
-    /// let mut sent_output = SaplingSentOutput::new();
-    /// let amount = Amount::from_u64(50_000_000)?; // 0.5 ZEC
-    /// sent_output.set_value(amount);
-    /// # Ok(())
-    /// # }
-    /// ```
     pub fn set_value(&mut self, value: Amount) {
         self.value = value;
     }

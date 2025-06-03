@@ -100,16 +100,6 @@ impl<const N: usize> Blob<N> {
     }
 
     /// Returns `true` if the blob contains no bytes (N = 0).
-    ///
-    /// Note: For most practical uses of `Blob<N>`, this will always return `false`
-    /// as N is typically greater than 0.
-    ///
-    /// # Examples
-    /// ```
-    /// # use zewif::Blob;
-    /// let blob = Blob::<32>::default();
-    /// assert!(!blob.is_empty());
-    /// ```
     pub fn is_empty(&self) -> bool {
         N == 0
     }

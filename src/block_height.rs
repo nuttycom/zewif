@@ -110,14 +110,12 @@ impl PartialOrd for BlockHeight {
     }
 }
 
-/// Creates a BlockHeight from a u32 value
 impl From<u32> for BlockHeight {
     fn from(value: u32) -> Self {
         BlockHeight(value)
     }
 }
 
-/// Extracts the u32 value from a BlockHeight
 impl From<BlockHeight> for u32 {
     fn from(value: BlockHeight) -> u32 {
         value.0
@@ -133,7 +131,6 @@ impl TryFrom<u64> for BlockHeight {
     }
 }
 
-/// Converts a BlockHeight to a u64 value
 impl From<BlockHeight> for u64 {
     fn from(value: BlockHeight) -> u64 {
         value.0 as u64
@@ -149,7 +146,7 @@ impl TryFrom<i32> for BlockHeight {
     }
 }
 
-/// Creates a BlockHeight from a signed i64 if it fits in a u32
+/// Creates a BlockHeight from a signed i64 if it's non-negative and fits in a u32
 impl TryFrom<i64> for BlockHeight {
     type Error = std::num::TryFromIntError;
 

@@ -46,13 +46,6 @@ pub struct Data(Vec<u8>);
 
 impl Data {
     /// Creates a new empty `Data` instance.
-    ///
-    /// # Examples
-    /// ```
-    /// # use zewif::Data;
-    /// let data = Data::new();
-    /// assert!(data.is_empty());
-    /// ```
     pub fn new() -> Self {
         Self(Vec::new())
     }
@@ -82,41 +75,16 @@ impl Data {
     }
 
     /// Returns the number of bytes in the data.
-    ///
-    /// # Examples
-    /// ```
-    /// # use zewif::Data;
-    /// let data = Data::from_bytes(&[1, 2, 3]);
-    /// assert_eq!(data.len(), 3);
-    /// ```
     pub fn len(&self) -> usize {
         self.0.len()
     }
 
     /// Returns `true` if the data contains no bytes.
-    ///
-    /// # Examples
-    /// ```
-    /// # use zewif::Data;
-    /// let empty = Data::new();
-    /// assert!(empty.is_empty());
-    ///
-    /// let non_empty = Data::from_bytes(&[1, 2, 3]);
-    /// assert!(!non_empty.is_empty());
-    /// ```
     pub fn is_empty(&self) -> bool {
         self.0.is_empty()
     }
 
     /// Converts the data to a `Vec<u8>`, creating a copy.
-    ///
-    /// # Examples
-    /// ```
-    /// # use zewif::Data;
-    /// let data = Data::from_bytes(&[1, 2, 3]);
-    /// let vec = data.to_vec();
-    /// assert_eq!(vec, vec![1, 2, 3]);
-    /// ```
     pub fn to_vec(&self) -> Vec<u8> {
         self.0.to_vec()
     }

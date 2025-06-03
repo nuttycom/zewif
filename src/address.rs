@@ -118,104 +118,26 @@ impl Address {
     }
 
     /// Returns the user-assigned name for this address.
-    ///
-    /// # Returns
-    /// The name string assigned to this address, or an empty string if no name has been set.
-    ///
-    /// # Examples
-    /// ```
-    /// # use zewif::{Address, ProtocolAddress, transparent};
-    /// #
-    /// let t_addr = transparent::Address::new("t1example");
-    /// let protocol_addr = ProtocolAddress::Transparent(t_addr);
-    /// let mut address = Address::new(protocol_addr);
-    ///
-    /// address.set_name("Personal Savings".to_string());
-    /// assert_eq!(address.name(), "Personal Savings");
-    /// ```
     pub fn name(&self) -> &str {
         &self.name
     }
 
-    /// Returns the purpose descriptor for this address, if available.
-    ///
-    /// # Returns
-    /// `Some(&str)` containing the purpose string if set, or `None` if no purpose was assigned.
-    ///
-    /// # Examples
-    /// ```
-    /// # use zewif::{Address, ProtocolAddress, transparent};
-    /// #
-    /// let mut address = Address::new(ProtocolAddress::Transparent(
-    ///     transparent::Address::new("t1example")
-    /// ));
-    ///
-    /// // Initially there is no purpose
-    /// assert!(address.purpose().is_none());
-    ///
-    /// // Set a purpose and verify it was stored
-    /// address.set_purpose("Business expenses".to_string());
-    /// assert_eq!(address.purpose(), Some("Business expenses"));
-    /// ```
+    /// Returns the purpose descriptor for this address.
     pub fn purpose(&self) -> Option<&str> {
         self.purpose.as_deref()
     }
 
     /// Sets the purpose descriptor for this address.
-    ///
-    /// # Arguments
-    /// * `purpose` - A string describing the intended use of this address
-    ///
-    /// # Examples
-    /// ```
-    /// # use zewif::{Address, ProtocolAddress, transparent};
-    /// #
-    /// let mut address = Address::new(ProtocolAddress::Transparent(
-    ///     transparent::Address::new("t1example")
-    /// ));
-    ///
-    /// address.set_purpose("Donations".to_string());
-    /// ```
     pub fn set_purpose(&mut self, purpose: String) {
         self.purpose = Some(purpose);
     }
 
-    /// Returns the address as a string in its canonical format.
-    ///
-    /// # Returns
-    /// A string representation of the address.
-    ///
-    /// # Examples
-    /// ```
-    /// # use zewif::{Address, ProtocolAddress, transparent};
-    /// #
-    /// let address = Address::new(ProtocolAddress::Transparent(
-    ///     transparent::Address::new("t1exampleaddress")
-    /// ));
-    ///
-    /// let addr_string = address.as_string();
-    /// assert_eq!(addr_string, "t1exampleaddress");
-    /// ```
+    /// Returns the address in canonical string format.
     pub fn as_string(&self) -> String {
         self.address.as_string()
     }
 
     /// Returns a reference to the protocol-specific address.
-    ///
-    /// # Returns
-    /// A reference to the `ProtocolAddress` contained within this address.
-    ///
-    /// # Examples
-    /// ```
-    /// # use zewif::{Address, ProtocolAddress, transparent};
-    /// #
-    /// let t_addr = transparent::Address::new("t1example");
-    /// let protocol_addr = ProtocolAddress::Transparent(t_addr);
-    /// let address = Address::new(protocol_addr);
-    ///
-    /// let protocol = address.address();
-    /// assert!(matches!(protocol, ProtocolAddress::Transparent(_)));
-    /// ```
     pub fn address(&self) -> &ProtocolAddress {
         &self.address
     }
@@ -247,44 +169,11 @@ impl Address {
     }
 
     /// Sets the name for this address.
-    ///
-    /// # Arguments
-    /// * `name` - The user-defined name or label to assign to this address
-    ///
-    /// # Examples
-    /// ```
-    /// # use zewif::{Address, ProtocolAddress, transparent};
-    /// #
-    /// let mut address = Address::new(ProtocolAddress::Transparent(
-    ///     transparent::Address::new("t1example")
-    /// ));
-    ///
-    /// address.set_name("Cold Storage".to_string());
-    /// assert_eq!(address.name(), "Cold Storage");
-    /// ```
     pub fn set_name(&mut self, name: String) {
         self.name = name;
     }
 
     /// Replaces the protocol-specific address.
-    ///
-    /// # Arguments
-    /// * `address` - The new protocol address to store
-    ///
-    /// # Examples
-    /// ```
-    /// # use zewif::{Address, ProtocolAddress, transparent};
-    /// #
-    /// let mut address = Address::new(ProtocolAddress::Transparent(
-    ///     transparent::Address::new("t1old")
-    /// ));
-    ///
-    /// // Replace with a new address
-    /// let new_addr = transparent::Address::new("t1new");
-    /// address.set_address(ProtocolAddress::Transparent(new_addr));
-    ///
-    /// assert_eq!(address.as_string(), "t1new");
-    /// ```
     pub fn set_address(&mut self, address: ProtocolAddress) {
         self.address = address;
     }

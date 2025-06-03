@@ -155,14 +155,12 @@ impl Amount {
         self.0.to_le_bytes()
     }
 
-    /// Returns `true` if `self` is positive and `false` if the Amount is zero or
-    /// negative.
+    /// Returns `true` if `self` is positive.
     pub const fn is_positive(self) -> bool {
         self.0.is_positive()
     }
 
-    /// Returns `true` if `self` is negative and `false` if the Amount is zero or
-    /// positive.
+    /// Returns `true` if `self` is negative.
     pub const fn is_negative(self) -> bool {
         self.0.is_negative()
     }
